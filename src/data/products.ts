@@ -127,8 +127,8 @@ export const mockProducts: Product[] = [
     category: 'Home & Living',
     description: 'Brew the perfect cup every time. The V60 ceramic dripper is the gold standard for manual coffee brewing, offering excellent heat retention and a clean cup.',
     images: [
-      'https://images.unsplash.com/photo-1495474472207-464a8d9cb903?w=800&q=80',
-      'https://images.unsplash.com/photo-1544243542-99a380965e63?w=800&q=80'
+      'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800&q=80',
+      'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80'
     ],
     rating: 4.8,
     reviewCount: 2104,

@@ -160,8 +160,9 @@ const QuickViewModal = () => {
                   <div className="text-sm font-medium mb-3">Quantity</div>
                   <div className="flex items-center border border-gray-200 rounded-xl w-32">
                     <button 
+                      disabled={quantity <= 1}
                       onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                      className="px-4 py-2 text-gray-500 hover:text-black hover:bg-gray-50 rounded-l-xl"
+                      className="px-4 py-2 text-gray-500 hover:text-black hover:bg-gray-50 rounded-l-xl disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed"
                     >-</button>
                     <div className="flex-1 text-center font-medium">{quantity}</div>
                     <button 

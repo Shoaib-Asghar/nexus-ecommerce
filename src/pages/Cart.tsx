@@ -87,8 +87,9 @@ const Cart = () => {
                 <span className="sm:hidden text-sm text-gray-500">Qty:</span>
                 <div className="flex items-center border border-gray-200 rounded-xl w-28">
                   <button 
+                    disabled={item.quantity <= 1}
                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                    className="px-3 py-1.5 text-gray-500 hover:text-black hover:bg-gray-50 rounded-l-xl"
+                    className="px-3 py-1.5 text-gray-500 hover:text-black hover:bg-gray-50 rounded-l-xl disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed"
                   >-</button>
                   <div className="flex-1 text-center font-semibold text-sm">{item.quantity}</div>
                   <button 

@@ -56,11 +56,11 @@ const Home = () => {
             <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-lg">
               Discover products designed for your modern lifestyle. Uncompromising quality meets timeless minimal design.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/shop" className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-colors flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-500">
+              <Link to="/shop" className="w-full sm:w-auto px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
                 Shop Now <ArrowRight size={20} />
               </Link>
-              <Link to="/category/new" className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-colors">
+              <Link to="/collections" className="w-full sm:w-auto px-8 py-4 bg-transparent text-white font-bold rounded-full border-2 border-white/30 hover:border-white transition-colors flex items-center justify-center">
                 Explore Collection
               </Link>
             </div>

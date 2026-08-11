@@ -192,8 +192,9 @@ const ProductDetails = () => {
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <div className="flex items-center border-2 border-gray-200 rounded-xl w-full sm:w-36 h-14">
               <button 
+                disabled={quantity <= 1}
                 onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                className="px-4 h-full text-gray-500 hover:text-black hover:bg-gray-50 rounded-l-xl transition-colors"
+                className="px-4 h-full text-gray-500 hover:text-black hover:bg-gray-50 rounded-l-xl transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed"
               >-</button>
               <div className="flex-1 text-center font-bold text-lg">{quantity}</div>
               <button 
@@ -204,14 +205,14 @@ const ProductDetails = () => {
             
             <button 
               onClick={handleAddToCart}
-              className="flex-1 h-14 bg-black text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-900 transition-all shadow-xl shadow-black/10 hover:-translate-y-0.5"
+              className="w-full sm:flex-1 h-14 bg-black text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-900 transition-all shadow-xl shadow-black/10 hover:-translate-y-0.5"
             >
               <ShoppingCart size={20} /> Add to Cart
             </button>
             
             <button 
               onClick={handleBuyNow}
-              className="flex-1 h-14 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 hover:-translate-y-0.5"
+              className="w-full sm:flex-1 h-14 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 hover:-translate-y-0.5"
             >
               Buy Now
             </button>

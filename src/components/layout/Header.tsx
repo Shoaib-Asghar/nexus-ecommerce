@@ -18,7 +18,7 @@ const Header = () => {
   const { isMobileMenuOpen, toggleMobileMenu } = useUIStore();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const products = useProductStore(state => state.products);
-  const categories = Array.from(new Set(products.map(p => p.category))).slice(0, 3);
+  const categories = Array.from(new Set(products.map(p => p.category)));
   
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const wishlistCount = wishlistItems.length;
@@ -53,7 +53,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
             <Link to="/shop" className="relative text-sm font-medium text-gray-600 hover:text-black after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 hover:after:w-full">Shop All</Link>
             {categories.map(cat => (
               <Link key={cat} to={`/category/${cat.toLowerCase().replace(' & ', '-')}`} className="relative text-sm font-medium text-gray-600 hover:text-black after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 hover:after:w-full">{cat}</Link>
@@ -147,7 +147,7 @@ const Header = () => {
                 </button>
               </div>
 
-              <div className="flex flex-col gap-6 flex-grow">
+              <div className="flex flex-col gap-4 flex-grow overflow-y-auto py-2 custom-scrollbar">
                 <Link onClick={toggleMobileMenu} to="/shop" className="text-lg font-medium">Shop All</Link>
                 {categories.map(cat => (
                   <Link key={cat} onClick={toggleMobileMenu} to={`/category/${cat.toLowerCase().replace(' & ', '-')}`} className="text-lg font-medium text-gray-600">{cat}</Link>

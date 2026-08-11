@@ -155,7 +155,7 @@ const Checkout = () => {
 
                 <div>
                   <h2 className="text-2xl font-bold mb-6">Shipping Address</h2>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">First name</label>
                       <input 
@@ -296,7 +296,7 @@ const Checkout = () => {
                       <span className="font-semibold">Credit / Debit Card</span>
                     </div>
                     {paymentMethod === 'card' && (
-                      <div className="p-4 pt-0 px-12 grid grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                      <div className="p-4 pt-0 px-12 grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
                         <div className="col-span-2">
                           <input type="text" placeholder="Card number" required className="w-full bg-white border border-gray-300 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-black" />
                         </div>

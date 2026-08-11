@@ -12,9 +12,16 @@ const Shop = () => {
 
   const products = useProductStore(state => state.products);
   
-  const [selectedCategory, setSelectedCategory] = useState<string>(
-    slug ? (slug === 'new' ? '' : slug.replace('-', ' ').toLowerCase()) : ''
-  );
+  const categories = Array.from(new Set(products.map(p => p.category)));
+  const brands = Array.from(new Set(products.map(p => p.brand)));
+
+  const resolveSlug = (s?: string) => {
+    if (!s || s === 'new') return '';
+    const match = categories.find(c => c.toLowerCase().replace(' & ', '-') === s);
+    return match ? match.toLowerCase() : s.replace('-', ' ');
+  };
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(resolveSlug(slug));
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [sortOption, setSortOption] = useState<string>('featured');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -29,15 +36,8 @@ const Shop = () => {
   ];
 
   React.useEffect(() => {
-    if (slug) {
-      setSelectedCategory(slug === 'new' ? '' : slug.replace('-', ' ').toLowerCase());
-    } else {
-      setSelectedCategory('');
-    }
+    setSelectedCategory(resolveSlug(slug));
   }, [slug]);
-
-  const categories = Array.from(new Set(products.map(p => p.category)));
-  const brands = Array.from(new Set(products.map(p => p.brand)));
 
   const filteredProducts = useMemo(() => {
     let result = [...products];
@@ -87,29 +87,29 @@ const Shop = () => {
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
           <h1 className="text-4xl font-bold tracking-tight mb-2 capitalize">
-            {slug === 'new' ? 'New Arrivals' : isSale ? 'Sale' : slug ? slug.replace('-', ' ') : 'All Products'}
+            {slug === 'new' ? 'New Arrivals' : selectedCategory ? selectedCategory : isSale ? 'Sale' : 'All Products'}
           </h1>
           <p className="text-gray-500">Showing {filteredProducts.length} results</p>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
           <button 
             onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="md:hidden flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-xl font-medium"
+            className="md:hidden w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 rounded-xl font-medium"
           >
             <Filter size={18} /> Filters
           </button>
           
-          <div className="relative" onMouseLeave={() => setIsSortOpen(false)}>
+          <div className="relative w-full sm:w-auto" onMouseLeave={() => setIsSortOpen(false)}>
             <button 
               onClick={() => setIsSortOpen(!isSortOpen)}
-              className="flex items-center justify-between w-[240px] bg-white border border-gray-200 text-gray-700 py-2.5 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-black font-medium"
+              className="flex items-center justify-between w-full sm:w-[240px] bg-white border border-gray-200 text-gray-700 py-2.5 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-black font-medium"
             >
               <span className="truncate">{sortOptions.find(o => o.value === sortOption)?.label}</span>
               <ChevronDown size={18} className={`transition-transform duration-200 ${isSortOpen ? 'rotate-180' : ''}`} />
             </button>
             {isSortOpen && (
-              <div className="absolute right-0 top-full mt-2 w-[240px] bg-white border border-gray-100 rounded-xl shadow-lg overflow-hidden z-20 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="absolute right-0 top-full mt-2 w-full sm:w-[240px] bg-white border border-gray-100 rounded-xl shadow-lg overflow-hidden z-20 animate-in fade-in slide-in-from-top-2 duration-200">
                 {sortOptions.map(option => (
                   <button
                     key={option.value}
