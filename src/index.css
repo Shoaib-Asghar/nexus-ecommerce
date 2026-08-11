@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  --color-primary: #1a1a2e;      /* Deep navy — premium feel */
+  --color-accent: #e8c547;       /* Warm gold — luxury accent */
+  --color-accent-hover: #d4b340;
+  --color-surface: #fafaf8;      /* Warm off-white — not cold gray */
+  --color-surface-alt: #f3f1ed;  /* Slightly warmer secondary */
+  --color-border: #e8e6e1;       /* Warm border, not gray-100 */
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 antialiased selection:bg-gray-200;
+  }
+  
+  button {
+    @apply cursor-pointer;
+  }
+  
+  button:disabled {
+    @apply cursor-not-allowed;
+  }
+  
+  /* Disable scrollbar for cleaner look if desired, or keep it standard */
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+}
